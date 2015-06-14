@@ -51,6 +51,7 @@ var TodoItem = React.createClass({
       <li
         className={cx({
           'completed': todo.complete,
+          'prioritise': todo.prioritise,
           'editing': this.state.isEditing
         })}
         key={todo.id}>
@@ -65,6 +66,12 @@ var TodoItem = React.createClass({
             {todo.text}
           </label>
           <button className="destroy" onClick={this._onDestroyClick} />
+            <input
+            className="toggle prioritise"
+            type="checkbox"
+            checked={todo.prioritise}
+            onChange={this._onTogglePrioritise}
+            />
         </div>
         {input}
       </li>
@@ -92,6 +99,10 @@ var TodoItem = React.createClass({
 
   _onDestroyClick: function() {
     TodoActions.destroy(this.props.todo.id);
+  },
+
+  _onTogglePrioritise: function() {
+    TodoActions.togglePrioritise(this.props.todo);
   }
 
 });

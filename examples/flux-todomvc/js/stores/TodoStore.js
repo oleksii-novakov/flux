@@ -150,6 +150,16 @@ AppDispatcher.register(function(action) {
       TodoStore.emitChange();
       break;
 
+    case TodoConstants.TODO_UNDO_PRIORITISE:
+      update(action.id, {prioritise: false});
+      TodoStore.emitChange();
+      break;
+
+    case TodoConstants.TODO_PRIORITISE:
+      update(action.id, {prioritise: true});
+      TodoStore.emitChange();
+      break;
+
     case TodoConstants.TODO_UPDATE_TEXT:
       text = action.text.trim();
       if (text !== '') {

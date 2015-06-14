@@ -53,6 +53,22 @@ var TodoActions = {
   },
 
   /**
+   * Toggle whether a single ToDo is prioritise
+   * @param  {object} todo
+   */
+  togglePrioritise: function(todo) {
+    var id = todo.id;
+    var actionType = todo.prioritise ?
+        TodoConstants.TODO_UNDO_PRIORITISE :
+        TodoConstants.TODO_PRIORITISE;
+
+    AppDispatcher.dispatch({
+      actionType: actionType,
+      id: id
+    });
+  },
+
+  /**
    * Mark all ToDos as complete
    */
   toggleCompleteAll: function() {
